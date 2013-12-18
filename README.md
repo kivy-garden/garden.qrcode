@@ -4,6 +4,9 @@ Module QRCode
 
 A QRCode Widget.
 
+Requirements:
+
+    pip install qrcode
 
 Usage::
 
