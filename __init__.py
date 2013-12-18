@@ -1,0 +1,1 @@
+from qrcodewidget import QRCodeWidget
