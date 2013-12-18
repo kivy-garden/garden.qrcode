@@ -1,4 +1,4 @@
-''' Kivy Widget that accepts data and displas qrcode
+''' Kivy Widget that accepts data and displays qrcode
 '''
 
 from threading import Thread
@@ -67,13 +67,19 @@ class QRCodeWidget(FloatLayout):
     '''
 
     background_color = ListProperty((1, 1, 1, 1))
-    ''' Background color of the background of the widget.
+    ''' Background color of the background of the widget to be displayed
+    behind the qrcode.
 
     :data:`background_color` is a :class:`~kivy.properties.ListProperty`,
     defaulting to `(1, 1, 1, 1)`.
     '''
 
     loading_image = StringProperty('data/images/image-loading.gif')
+    '''Intermediate image to be displayed while the widget ios being loaded.
+    
+    :data:`loading_image` is a :class:`~kivy.properties.StringProperty`,
+    defaulting to `'data/images/image-loading.gif'`.
+    '''
 
     def __init__(self, **kwargs):
         super(QRCodeWidget, self).__init__(**kwargs)
