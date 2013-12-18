@@ -10,7 +10,7 @@ Usage::
  Python::
 
     from kivy.garden.qrcode import QRCodeWidget
-    parent.add_widget(QRCodeWidget(range=(0, 100)))
+    parent.add_widget(QRCodeWidget(data="Kivy Rocks"))
 
  kv::
 
