@@ -172,7 +172,8 @@ class QRCodeWidget(FloatLayout):
             Clock.schedule_once(lambda dt: self._upd_texture(buff))
             return
         texture.blit_buffer(buff, colorfmt='rgb', bufferfmt='ubyte')
-        img =self.ids.qrimage
+        texture.flip_vertical()
+        img = self.ids.qrimage
         img.anim_delay = -1
         img.texture = texture
         img.canvas.ask_update()
