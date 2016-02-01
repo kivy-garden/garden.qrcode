@@ -12,7 +12,7 @@ from kivy.properties import ObjectProperty, StringProperty, ListProperty,\
     BooleanProperty
 from kivy.lang import Builder
 from kivy.clock import Clock
-
+import qrcode
 try:
     import qrcode
 except ImportError:
@@ -128,7 +128,7 @@ class QRCodeWidget(FloatLayout):
             qr.add_data(addr)
             qr.make(fit=True)
         except Exception as e:
-            print e
+            print(e)
             self.qr=None
         self.update_texture()
 
@@ -148,20 +148,23 @@ class QRCodeWidget(FloatLayout):
 
         matrix = self.qr.get_matrix()
         k = len(matrix)
+        
         # create the texture in main UI thread otherwise
         # this will lead to memory corruption
         Clock.schedule_once(partial(self._create_texture, k), -1)
-        buff = []
-        bext = buff.extend
+        
+        
         cr, cg, cb, ca = self.background_color[:]
         cr, cg, cb = cr*255, cg*255, cb*255
-
+        ###used bytearray for python 3.5 eliminates need for btext
+        buff = bytearray()
         for r in range(k):
             for c in range(k):
-                bext([0, 0, 0] if matrix[r][c] else [cr, cg, cb])
+                buff.extend([0, 0, 0] if matrix[r][c] else [cr, cg, cb])
 
         # then blit the buffer
-        buff = ''.join(map(chr, buff))
+        # join not neccesarry when using a byte array 
+        # buff =''.join(map(chr, buff))
         # update texture in UI thread.
         Clock.schedule_once(lambda dt: self._upd_texture(buff))
 
@@ -171,6 +174,7 @@ class QRCodeWidget(FloatLayout):
             # if texture hasn't yet been created delay the texture updation
             Clock.schedule_once(lambda dt: self._upd_texture(buff))
             return
+        
         texture.blit_buffer(buff, colorfmt='rgb', bufferfmt='ubyte')
         texture.flip_vertical()
         img = self.ids.qrimage
@@ -183,5 +187,4 @@ if __name__ == '__main__':
     import sys
     data = str(sys.argv[1:])
     runTouchApp(QRCodeWidget(data=data))
-
 
