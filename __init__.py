@@ -1,12 +1,3 @@
-#from qrcodewidget import QRCodeWidget
-#
-#Ideally this code would be imported using the above command
-#and this file would only have the import, unfortuantly for some reason this is bugging and throws  ImportError: No module named 'qrcodewidget' hopefully some one can fix this
-#
-#I've left the qrcodewidget.py as a copy of this file
-#the widget runs from this file though. 
-#
-# 
 ''' Kivy Widget that accepts data and displays qrcode
 '''
 
