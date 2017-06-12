@@ -17,6 +17,8 @@ Usage::
 
  kv::
 
+    #:import QRCodeWidget kivy.garden.qrcode
+
     BoxLayout:
         orientation: 'vertical'
         Button:
