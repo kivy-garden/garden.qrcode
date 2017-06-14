@@ -1,6 +1,7 @@
 Module QRCode
 =============
 
+<img src="https://github.com/kivy-garden/garden.qrcode/blob/master/screenshot.png" align="right" width="256" />
 
 A QRCode Widget.
 
